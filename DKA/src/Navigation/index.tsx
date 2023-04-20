@@ -8,8 +8,8 @@ import {
 
 // import {PlansContextContainer} from '../Screens/BusinessOverview/Plans/StateManagement/Context';
 import MainScreen from '../Screens/MainScreen';
+import QrScannerScreen from '../Screens/QrScannerScreen/QrScannerScreen';
 import SecondScreen from '../Screens/SecondScreen';
-// import SecondScreen from '../Screens/SecondScreen';
 
 const Stack = createNativeStackNavigator<StackParamList>();
 const Navigation = (): JSX.Element => {
@@ -22,6 +22,7 @@ const Navigation = (): JSX.Element => {
         }}>
         <Stack.Screen name="Main" component={MainScreen} />
         <Stack.Screen name="Second" component={SecondScreen} />
+        <Stack.Screen name="QrScanner" component={QrScannerScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -31,6 +32,7 @@ export default Navigation;
 export type StackParamList = {
   Main: undefined;
   Second: undefined;
+  QrScanner: undefined;
 };
 
 export type StackScreenProps<T extends keyof StackParamList> =
