@@ -268,6 +268,8 @@ dependencies {
     debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.flipper'
     }
+    
+    compile project(':react-native-scan-barcode')
 
     if (enableHermes) {
         //noinspection GradleDynamicVersion

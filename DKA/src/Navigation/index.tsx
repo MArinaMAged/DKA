@@ -9,7 +9,7 @@ import {
 // import {PlansContextContainer} from '../Screens/BusinessOverview/Plans/StateManagement/Context';
 import MainScreen from '../Screens/MainScreen';
 import SecondScreen from '../Screens/SecondScreen';
-// import SecondScreen from '../Screens/SecondScreen';
+import BarcodeScreen from '../Screens/BarcodeScreen';
 
 const Stack = createNativeStackNavigator<StackParamList>();
 const Navigation = (): JSX.Element => {
@@ -22,6 +22,7 @@ const Navigation = (): JSX.Element => {
         }}>
         <Stack.Screen name="Main" component={MainScreen} />
         <Stack.Screen name="Second" component={SecondScreen} />
+        <Stack.Screen name="Barcode" component={BarcodeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -31,6 +32,7 @@ export default Navigation;
 export type StackParamList = {
   Main: undefined;
   Second: undefined;
+  Barcode: undefined;
 };
 
 export type StackScreenProps<T extends keyof StackParamList> =
