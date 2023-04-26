@@ -1,43 +1,60 @@
-import React, {useCallback} from 'react';
-import {StyleSheet, Text, TouchableOpacity, Linking, Alert} from 'react-native';
+import React, {useCallback, useRef, useState} from 'react';
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import QRCodeScanner from 'react-native-infy-qrcode-scanner';
+import SlidingUpPanel from 'rn-sliding-up-panel';
+
+const windowHeight = Dimensions.get('window').height;
 
 const QrScannerScreen: React.FC = () => {
-  const onSuccess = useCallback((e: any) => {
-    Alert.alert(e.data);
-    Linking.openURL(e.data).catch(err => console.error('Error', err));
-  }, []);
+  const [value, setValue] = useState('');
+  const panelRef = useRef<SlidingUpPanel>(null);
 
+  const handleButtonPress = () => {
+    panelRef.current?.show(200);
+  };
+
+  const handlePanelClose = () => {
+    panelRef.current?.hide();
+  };
+
+  const onSuccess = useCallback((e: any) => {
+    setValue(e.data);
+    handleButtonPress();
+  }, []);
+  console.log(value);
   return (
-    <QRCodeScanner
-      onRead={onSuccess}
-      bottomContent={
-        <TouchableOpacity style={styles.buttonTouchable}>
-          <Text style={styles.buttonText}>Confirm</Text>
-        </TouchableOpacity>
-      }
-    />
+    <>
+      <QRCodeScanner onRead={onSuccess} bottomContent={
+        <View style={{backgroundColor:'red', height:'100%'}} >
+          <Text>sdjghfsljhfs</Text>
+        </View>
+      } />
+
+      <SlidingUpPanel
+        ref={panelRef}
+        draggableRange={{top: windowHeight,bottom: 0}}
+        onBottomReached={handlePanelClose}>
+        <View style={styles.panel}>
+          <Text style={styles.panelTitle}>{value}</Text>
+        </View>
+      </SlidingUpPanel>
+    </>
   );
 };
-
 const styles = StyleSheet.create({
-  centerText: {
+  panel: {
     flex: 1,
-    fontSize: 16,
-    padding: 20,
-    color: '#eee',
+    backgroundColor: 'white',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
   },
-  textBold: {
-    fontWeight: '600',
-    color: '#000',
-  },
-  buttonText: {
-    fontSize: 21,
-    color: '#009b00',
-  },
-  buttonTouchable: {
-    padding: 10,
-  },
+  panelTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'gray',
+  }
 });
 
 export default QrScannerScreen;

@@ -15,7 +15,7 @@ const MainScreen = ({ navigation }: StackScreenProps<'Main'>): JSX.Element => {
 
       <Button
         title="GO TO QR Scanner"
-        onPress={() => navigation.push('QrScanner')}
+        onPress={() => {navigation.push('QrScanner'); console.log("first")}}
       />
     </View>
   );
