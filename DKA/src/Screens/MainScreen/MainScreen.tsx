@@ -30,19 +30,16 @@ const MainScreen = ({navigation}: StackScreenProps<'Main'>): JSX.Element => {
   return (
     // <View style={style.ContainerStyle}>
     <View style={styles.container}>
-      {/* <Button
-        title="GO TO SEC SC"
-        onPress={() => navigation.push('Second')}
-      />
+      <Button title="GO TO SEC SC" onPress={() => navigation.push('Second')} />
 
       <Button
         title="GO TO QR Scanner"
         onPress={() => navigation.push('QrScanner')}
-      /> */}
-      <TouchableOpacity style={styles.button} onPress={onPress} />
+      />
+      {/* <TouchableOpacity style={styles.button} onPress={onPress} />
       <BottomSheet ref={ref}>
         <View style={{flex: 1, backgroundColor: 'orange'}} />
-      </BottomSheet>
+      </BottomSheet> */}
     </View>
     // </View>
   );
