@@ -18,6 +18,8 @@ import {
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import Navigation from './src/Navigation';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import MainScreen from './src/Screens/MainScreen/MainScreen';
 const App = (): JSX.Element => {
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
@@ -26,11 +28,14 @@ const App = (): JSX.Element => {
 
   return (
     <SafeAreaView style={styles.sectionContainer}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <Navigation />
+      <GestureHandlerRootView>
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          backgroundColor={backgroundStyle.backgroundColor}
+        />
+        {/* <Navigation /> */}
+        <MainScreen />
+      </GestureHandlerRootView>
     </SafeAreaView>
   );
 };
