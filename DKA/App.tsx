@@ -21,19 +21,17 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import Navigation from './src/Navigation';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import QRsProvider from './src/context/qrsContext';
 const App = (): JSX.Element => {
-  const isDarkMode = useColorScheme() === 'dark';
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <GestureHandlerRootView style={{flex: 1}}>
-      <View style={styles.header}>
-        <Text style={styles.headerTxt}>INVENTORY COUNT</Text>
-      </View>
-      <Navigation />
-    </GestureHandlerRootView>
+    <QRsProvider>
+      <GestureHandlerRootView style={{flex: 1}}>
+        <View style={styles.header}>
+          <Text style={styles.headerTxt}>INVENTORY COUNT</Text>
+        </View>
+        <Navigation />
+      </GestureHandlerRootView>
+    </QRsProvider>
   );
 };
 

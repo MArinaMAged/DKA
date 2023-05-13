@@ -1,34 +1,10 @@
-import React, {useCallback, useRef} from 'react';
-import {
-  Button,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import React from 'react';
+import {Button, StyleSheet, View} from 'react-native';
 
-import {StackScreenProps, StackParamList} from '../../Navigation';
-
-import style from './MainScreen.Styles';
-import BottomSheet, {
-  BottomSheetRefProps,
-} from '../../Components/BottomSheet/BottomSheet';
+import {StackScreenProps} from '../../Navigation';
 
 const MainScreen = ({navigation}: StackScreenProps<'Main'>): JSX.Element => {
-  const ref = useRef<BottomSheetRefProps>(null);
-
-  const onPress = useCallback(() => {
-    const isActive = ref?.current?.isActive();
-    if (isActive) {
-      ref?.current?.scrollTo(0);
-    } else {
-      ref?.current?.scrollTo(-200);
-    }
-  }, []);
-
   return (
-    // <View style={style.ContainerStyle}>
     <View style={styles.container}>
       <Button title="GO TO SEC SC" onPress={() => navigation.push('Second')} />
 
@@ -36,12 +12,7 @@ const MainScreen = ({navigation}: StackScreenProps<'Main'>): JSX.Element => {
         title="GO TO QR Scanner"
         onPress={() => navigation.push('QrScanner')}
       />
-      {/* <TouchableOpacity style={styles.button} onPress={onPress} />
-      <BottomSheet ref={ref}>
-        <View style={{flex: 1, backgroundColor: 'orange'}} />
-      </BottomSheet> */}
     </View>
-    // </View>
   );
 };
 
