@@ -1,17 +1,12 @@
 import React from 'react';
-import { Button, View } from 'react-native';
+import {Button, StyleSheet, View} from 'react-native';
 
-import { StackScreenProps, StackParamList } from '../../Navigation';
+import {StackScreenProps} from '../../Navigation';
 
-import styles from './MainScreen.Styles';
-
-const MainScreen = ({ navigation }: StackScreenProps<'Main'>): JSX.Element => {
+const MainScreen = ({navigation}: StackScreenProps<'Main'>): JSX.Element => {
   return (
-    <View style={styles.ContainerStyle}>
-      <Button
-        title="GO TO SEC SC"
-        onPress={() => navigation.push('Second')}
-      />
+    <View style={styles.container}>
+      <Button title="GO TO SEC SC" onPress={() => navigation.push('Second')} />
 
       <Button
         title="GO TO QR Scanner"
@@ -22,3 +17,19 @@ const MainScreen = ({ navigation }: StackScreenProps<'Main'>): JSX.Element => {
 };
 
 export default MainScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#111',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+    height: 50,
+    borderRadius: 25,
+    aspectRatio: 1,
+    backgroundColor: 'red',
+    opacity: 0.6,
+  },
+});

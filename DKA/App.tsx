@@ -14,24 +14,24 @@ import {
   SafeAreaView,
   StyleSheet,
   useColorScheme,
+  View,
+  Text,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import Navigation from './src/Navigation';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import QRsProvider from './src/context/qrsContext';
 const App = (): JSX.Element => {
-  const isDarkMode = useColorScheme() === 'dark';
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={styles.sectionContainer}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <Navigation />
-    </SafeAreaView>
+    <QRsProvider>
+      <GestureHandlerRootView style={{flex: 1}}>
+        <View style={styles.header}>
+          <Text style={styles.headerTxt}>INVENTORY COUNT</Text>
+        </View>
+        <Navigation />
+      </GestureHandlerRootView>
+    </QRsProvider>
   );
 };
 
@@ -51,6 +51,21 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  header: {
+    height: 44,
+    width: '100%',
+    backgroundColor: '#121619',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerTxt: {
+    fontSize: 16,
+    fontWeight: '700',
+    lineHeight: 19,
+    letterSpacing: 0,
+    textAlign: 'center',
+    color: '#FFFFFF',
   },
 });
 
